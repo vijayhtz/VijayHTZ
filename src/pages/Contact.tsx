@@ -66,7 +66,7 @@ const Contact: React.FC = () => {
                   <div className="contact-icon-box"><MapPin size={24} /></div>
                   <div className="contact-item-text">
                     <h3>Visit Our Office</h3>
-                    <p>123 Event Street, Celebration City, IN 123456</p>
+                    <p>(selvapuram , coimbatore -26)</p>
                   </div>
                 </div>
 

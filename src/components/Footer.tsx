@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
             <ul className="footer-contact">
               <li>
                 <MapPin size={18} className="contact-icon" />
-                <span>123 Event Street, Celebration City, IN 123456</span>
+                <span>(selvapuram , coimbatore -26)</span>
               </li>
               <li>
                 <Phone size={18} className="contact-icon" />
