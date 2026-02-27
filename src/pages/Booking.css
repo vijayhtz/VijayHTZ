@@ -1,0 +1,255 @@
+/* Booking.css */
+.booking-section {
+    padding-top: var(--spacing-md);
+}
+
+.booking-wizard {
+    background-color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Progress Bar */
+.wizard-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xxl);
+    position: relative;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-light);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid #e2e8f0;
+    transition: all var(--transition-normal);
+}
+
+.progress-step span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.progress-step.active .step-circle {
+    background-color: var(--primary-gold);
+    color: var(--bg-dark);
+    border-color: var(--primary-gold);
+}
+
+.progress-step.active span {
+    color: var(--primary-red);
+    font-weight: 600;
+}
+
+.progress-line {
+    flex: 1;
+    height: 2px;
+    background-color: #e2e8f0;
+    position: relative;
+    z-index: 1;
+    margin: 0 -20px;
+    top: -12px;
+}
+
+/* Form Styles */
+.booking-form {
+    min-height: 400px;
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--primary-red);
+    border-bottom: 2px solid var(--primary-gold);
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-icon {
+    color: var(--primary-gold);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group.row {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.input-field {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast);
+    background-color: var(--bg-white);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+/* Actions */
+.form-actions {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.form-actions.right {
+    justify-content: flex-end;
+}
+
+.form-actions.space-between {
+    justify-content: space-between;
+}
+
+/* Summary Details */
+.booking-summary {
+    background-color: var(--bg-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+}
+
+.summary-card {
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #cbd5e1;
+    padding-bottom: var(--spacing-xs);
+}
+
+.summary-row span {
+    color: var(--text-muted);
+}
+
+.summary-row strong {
+    color: var(--text-main);
+    text-align: right;
+    max-width: 60%;
+}
+
+/* Upload */
+.reference-upload {
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    background-color: var(--bg-white);
+    transition: border-color var(--transition-fast);
+}
+
+.reference-upload:hover {
+    border-color: var(--primary-gold);
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    color: var(--primary-red);
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.upload-help {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: var(--spacing-xs);
+}
+
+.payment-info {
+    background-color: rgba(212, 175, 55, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.payment-info h4 {
+    color: var(--primary-gold);
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-body);
+}
+
+.payment-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Mobile */
+@media screen and (max-width: 576px) {
+    .form-group.row {
+        flex-direction: column;
+    }
+
+    .wizard-progress span {
+        display: none;
+    }
+
+    .summary-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-row strong {
+        text-align: left;
+        max-width: 100%;
+    }
+}

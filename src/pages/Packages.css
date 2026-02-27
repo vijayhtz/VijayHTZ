@@ -1,0 +1,25 @@
+/* Packages.css */
+/* Uses .page-header and .page-title from Services.css generally, but we can add specifics here */
+
+.packages-category {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    align-items: stretch;
+}
+
+.mt-8 {
+    margin-top: var(--spacing-xxl);
+}
+
+@media screen and (max-width: 960px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}

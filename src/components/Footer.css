@@ -1,0 +1,125 @@
+.footer {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    margin-top: auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-brand {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-brand .since {
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    color: var(--bg-light);
+    display: block;
+}
+
+.footer-desc {
+    color: #ccc;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.95rem;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.social-icon {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--bg-white);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.social-icon:hover {
+    background-color: var(--primary-gold);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+}
+
+.footer-title {
+    color: var(--bg-white);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-red);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-links a {
+    color: #ccc;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--primary-gold);
+    padding-left: 5px;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    color: #ccc;
+}
+
+.contact-icon {
+    color: var(--primary-gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.footer-contact a {
+    color: #ccc;
+}
+
+.footer-contact a:hover {
+    color: var(--primary-gold);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #999;
+    font-size: 0.875rem;
+}

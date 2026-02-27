@@ -1,0 +1,69 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+/* Sizes */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+/* Variants */
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--bg-white);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-red);
+    box-shadow: var(--shadow-red);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--primary-gold);
+    color: var(--text-main);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-gold);
+    color: var(--bg-white);
+    box-shadow: var(--shadow-gold);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-red);
+    color: var(--bg-white);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
