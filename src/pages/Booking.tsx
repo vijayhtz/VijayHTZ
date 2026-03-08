@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Calendar, Package, FileText, Upload } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, addDoc } from 'firebase/firestore';
 import Button from '../components/Button';
 import './Booking.css';
 
 const Booking: React.FC = () => {
+  // Authentication removed per user request
   const [step, setStep] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -15,8 +14,29 @@ const Booking: React.FC = () => {
     packageLevel: '',
     eventDate: '',
     location: '',
-    requirements: ''
+    requirements: '',
+    selectedServices: [] as string[]
   });
+
+  const availableServices = [
+    "Stage Setup & Design", "Mandap / Mandapam Decoration", "Balloon Art & Theme Balloons",
+    "Cake Table Decor", "Flower Backdrops & Floral Walls", "Entrance & Gate Decoration",
+    "LED Name Boards & Signage", "Lighting & Ambient Lighting", "Photobooth & Selfie Zone Setup",
+    "Ceiling Drapes & Fabric Decor", "Chair Covers & Sashes", "Table Centerpieces & Table Decor",
+    "Backdrop Arch Designs", "Floor Stickers & Aisle Decor", "Theme & Concept Styling",
+    "Confetti & Special Effects", "Sound System & DJ Setup", "Wedding Pandal & Canopy",
+    "Traditional South Indian Setups", "Corporate Event Stage & Branding"
+  ];
+
+  const handleServiceToggle = (service: string) => {
+    setFormData(prev => {
+      const isSelected = prev.selectedServices.includes(service);
+      const updated = isSelected
+        ? prev.selectedServices.filter(s => s !== service)
+        : [...prev.selectedServices, service];
+      return { ...prev, selectedServices: updated };
+    });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -31,32 +51,28 @@ const Booking: React.FC = () => {
     if (step > 1) setStep(step - 1);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
 
-    try {
-      await addDoc(collection(db, "bookings"), {
-        ...formData,
-        createdAt: new Date().toISOString(),
-        status: 'Pending',
-        bookingId: `BKG-${Math.floor(1000 + Math.random() * 9000)}`
-      });
+    const waNumber = "919342720232";
+    const servicesList = formData.selectedServices.length > 0
+      ? formData.selectedServices.map(s => '%0A  - ' + s).join('')
+      : 'None';
 
-      alert("Booking request submitted successfully! We will contact you shortly to confirm and process the advance payment.");
+    const msg =
+      'New Booking Request - Vijay Tent House' +
+      '%0A%0ACustomer: ' + formData.name +
+      '%0APhone: ' + formData.phone +
+      '%0AEvent: ' + formData.eventType +
+      '%0APackage: ' + formData.packageLevel +
+      '%0ADate: ' + formData.eventDate +
+      '%0ALocation: ' + formData.location +
+      '%0A%0ASelected Services:' + servicesList +
+      '%0A%0ARequirements: ' + (formData.requirements || 'None');
 
-      // Reset form after submission
-      setStep(1);
-      setFormData({
-        name: '', phone: '', eventType: '', packageLevel: '', eventDate: '', location: '', requirements: ''
-      });
-    } catch (err) {
-      console.error("Error submitting booking: ", err);
-      alert("Failed to submit booking request. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    window.location.href = 'https://wa.me/' + waNumber + '?text=' + msg;
   };
+
 
   return (
     <div className="page-container">
@@ -130,6 +146,22 @@ const Booking: React.FC = () => {
                         <option value="Premium">Premium Package</option>
                         <option value="Custom">Custom / I need suggestions</option>
                       </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label>Select Services from List *</label>
+                    <div className="services-checklist" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '0.5rem', maxHeight: '200px', overflowY: 'auto', padding: '1rem', background: '#f8f9fa', borderRadius: '4px', border: '1px solid #ddd' }}>
+                      {availableServices.map(service => (
+                        <label key={service} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '0.9rem' }}>
+                          <input
+                            type="checkbox"
+                            checked={formData.selectedServices.includes(service)}
+                            onChange={() => handleServiceToggle(service)}
+                          />
+                          {service}
+                        </label>
+                      ))}
                     </div>
                   </div>
 

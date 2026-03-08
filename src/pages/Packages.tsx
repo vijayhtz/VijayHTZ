@@ -52,6 +52,7 @@ const Packages: React.FC = () => {
               <PackageCard
                 level="Basic"
                 title="Simple Elegance"
+                price="₹ 35,000"
                 image={weddingImages[0] || "https://images.unsplash.com/photo-1519741497674-611481863552"}
                 features={[
                   "Standard Stage Setup (10x10)",
@@ -65,6 +66,7 @@ const Packages: React.FC = () => {
                 level="Standard"
                 title="Grand Celebration"
                 isPopular={true}
+                price="₹ 75,000"
                 image={weddingImages[1] || "https://images.unsplash.com/photo-1511578314322-379afb476865"}
                 features={[
                   "Premium Stage Setup (20x15)",
@@ -79,6 +81,7 @@ const Packages: React.FC = () => {
               <PackageCard
                 level="Premium"
                 title="Royal Wedding"
+                price="₹ 1,50,000"
                 image={weddingImages[2] || "https://images.unsplash.com/photo-1606800052052-a08af7148866"}
                 features={[
                   "Luxury Stage Setup (Custom Size)",
@@ -100,6 +103,7 @@ const Packages: React.FC = () => {
               <PackageCard
                 level="Basic"
                 title="Cute Setup"
+                price="₹ 8,000"
                 image={birthdayImages[0] || "https://images.unsplash.com/photo-1530103862676-de8892bf309c"}
                 features={[
                   "Balloon Arch (Standard Colors)",
@@ -113,6 +117,7 @@ const Packages: React.FC = () => {
                 level="Standard"
                 title="Thematic Party"
                 isPopular={true}
+                price="₹ 18,000"
                 image={birthdayImages[1] || "https://images.unsplash.com/photo-1558636508-e0db3814bd1d"}
                 features={[
                   "Customized Theme Backdrop",
@@ -127,6 +132,7 @@ const Packages: React.FC = () => {
               <PackageCard
                 level="Premium"
                 title="Ultimate Bash"
+                price="₹ 35,000"
                 image={birthdayImages[2] || "https://images.unsplash.com/photo-1514525253161-7a46d19cd819"}
                 features={[
                   "Grand 3D Theme Decor",

@@ -113,6 +113,62 @@
     font-size: 0.8rem;
 }
 
+/* ── Package Price Badge ── */
+.package-price-badge {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, var(--primary-red), #7a0d13);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.pkg-price-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+.pkg-price-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-gold);
+    letter-spacing: 0.5px;
+}
+
 .package-footer {
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
     margin-top: auto;
+}
+
+/* ── Package Add to Cart button ── */
+.pkg-add-to-cart-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: linear-gradient(135deg, #2e1610, var(--primary-red));
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: var(--spacing-sm);
+    transition: all var(--transition-fast);
+    letter-spacing: 0.3px;
+}
+
+.pkg-add-to-cart-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+}
+
+.pkg-add-to-cart-btn.added {
+    background: linear-gradient(135deg, #16a34a, #065f46);
 }

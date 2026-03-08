@@ -97,11 +97,25 @@
     background-color: #f8fafc;
 }
 
-.input-with-icon input:focus {
+.input-with-icon input:focus,
+.input-with-icon select:focus {
     outline: none;
     border-color: var(--primary-gold);
     background-color: var(--bg-white);
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.role-select {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 2.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    background-color: #f8fafc;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .auth-footer {
@@ -124,6 +138,54 @@
 
 .auth-footer a:hover {
     color: var(--primary-gold);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-divider span {
+    padding: 0 var(--spacing-md);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.google-auth-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 0.8rem;
+    background-color: var(--bg-white);
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.google-auth-btn:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.google-auth-btn svg {
+    flex-shrink: 0;
 }
 
 @media screen and (max-width: 480px) {

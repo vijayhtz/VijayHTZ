@@ -135,6 +135,35 @@
     margin-bottom: var(--spacing-sm);
 }
 
+/* ── Service Price Badge ── */
+.service-price-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.22));
+    border: 1.5px solid rgba(212, 175, 55, 0.55);
+    border-radius: var(--radius-full);
+    padding: 5px 14px;
+    margin-bottom: var(--spacing-sm);
+    width: fit-content;
+}
+
+.service-price-badge .price-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.service-price-badge .price-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    letter-spacing: 0.3px;
+}
+
 .service-read-more {
     margin-top: auto;
     align-self: flex-start;
@@ -153,6 +182,41 @@
 
 .service-card:hover .service-read-more {
     color: var(--primary-red);
+}
+
+/* ── In-card action row ── */
+.service-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.add-to-cart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, var(--primary-red), #7a0d13);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.add-to-cart-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.add-to-cart-btn.added {
+    background: linear-gradient(135deg, #16a34a, #065f46);
 }
 
 /* Modal Overlay & Framework */

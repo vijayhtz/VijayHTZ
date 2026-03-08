@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Package, Calendar, Users, MessageSquare, Plus, Settings } from 'lucide-react';
 import Button from '../components/Button';
+import { getAllBookings, getAllUsers } from '../services/database';
+import type { BookingData } from '../services/database';
 import './Dashboard.css';
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState('bookings');
+  const [bookings, setBookings] = useState<BookingData[]>([]);
+  const [usersCount, setUsersCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  // Mock data
-  const recentBookings = [
-    { id: '#BKG-1156', customer: 'Alice Smith', event: 'Corporate Setup', date: 'Dec 10, 2026', status: 'Pending Advance' },
-    { id: '#BKG-1024', customer: 'John Doe', event: 'Wedding (Premium)', date: 'Oct 15, 2026', status: 'Confirmed' },
-    { id: '#BKG-1023', customer: 'Rahul Sharma', event: 'Birthday (Standard)', date: 'Sep 22, 2026', status: 'In Progress' },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [bookingsData, usersData] = await Promise.all([
+          getAllBookings(),
+          getAllUsers()
+        ]);
+        setBookings(bookingsData);
+        setUsersCount(usersData.length);
+      } catch (error) {
+        console.error("Error fetching admin data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="dashboard-container bg-light min-h-screen">
@@ -55,24 +72,28 @@ const AdminDashboard: React.FC = () => {
 
           <div className="admin-stats-grid mb-xl">
             <div className="admin-stat-card">
-              <div className="stat-title">New Bookings</div>
-              <div className="stat-val text-gold">12</div>
-              <div className="stat-desc">This week</div>
+              <div className="stat-title">Total Bookings</div>
+              <div className="stat-val text-gold">{bookings.length}</div>
+              <div className="stat-desc">All time</div>
             </div>
             <div className="admin-stat-card">
               <div className="stat-title">Pending Approvals</div>
-              <div className="stat-val text-danger">5</div>
+              <div className="stat-val text-danger">
+                {bookings.filter(b => b.status === 'Pending Advance').length}
+              </div>
               <div className="stat-desc">Action required</div>
             </div>
             <div className="admin-stat-card">
-              <div className="stat-title">Upcoming Events</div>
-              <div className="stat-val text-primary">8</div>
-              <div className="stat-desc">Next 30 days</div>
+              <div className="stat-title">Active Events</div>
+              <div className="stat-val text-primary">
+                {bookings.filter(b => b.status !== 'Completed').length}
+              </div>
+              <div className="stat-desc">In progress/Confirmed</div>
             </div>
             <div className="admin-stat-card">
               <div className="stat-title">Total Customers</div>
-              <div className="stat-val text-muted">1,240</div>
-              <div className="stat-desc">All time</div>
+              <div className="stat-val text-muted">{usersCount}</div>
+              <div className="stat-desc">All users</div>
             </div>
           </div>
 
@@ -95,22 +116,28 @@ const AdminDashboard: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {recentBookings.map(b => (
-                    <tr key={b.id}>
-                      <td className="font-medium">{b.id}</td>
-                      <td>{b.customer}</td>
-                      <td>{b.event}</td>
-                      <td>{b.date}</td>
-                      <td>
-                        <span className={`status-badge admin ${b.status.replace(/\s+/g, '-').toLowerCase()}`}>
-                          {b.status}
-                        </span>
-                      </td>
-                      <td>
-                        <button className="btn-table btn-table-primary">Review</button>
-                      </td>
-                    </tr>
-                  ))}
+                  {loading ? (
+                    <tr><td colSpan={6} className="text-center p-lg">Loading data...</td></tr>
+                  ) : bookings.length > 0 ? (
+                    bookings.map(b => (
+                      <tr key={b.id}>
+                        <td className="font-medium">#{b.id?.slice(-6).toUpperCase()}</td>
+                        <td>{b.customerName || 'N/A'}</td>
+                        <td>{b.event}</td>
+                        <td>{b.date}</td>
+                        <td>
+                          <span className={`status-badge admin ${b.status.replace(/\s+/g, '-').toLowerCase()}`}>
+                            {b.status}
+                          </span>
+                        </td>
+                        <td>
+                          <button className="btn-table btn-table-primary">Review</button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr><td colSpan={6} className="text-center p-lg">No bookings found</td></tr>
+                  )}
                 </tbody>
               </table>
             </div>
